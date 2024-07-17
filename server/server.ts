@@ -3,11 +3,12 @@ import morgan from "morgan";
 import cors from "cors";
 import fileUpload from "express-fileupload";
 import { ListenerPlugin, RouterPlugin } from "./plugins";
+import { dbConnect } from "./config/index";
 import bodyParser from "body-parser";
+
+dbConnect();
 const app = express();
-app.get("/", (req, res) => {
-  res.json({ msg: "Hello from server" });
-});
+
 app
   .use(morgan("dev"))
   .use(cors())

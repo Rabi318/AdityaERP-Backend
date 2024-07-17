@@ -8,7 +8,9 @@ const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
 const express_fileupload_1 = __importDefault(require("express-fileupload"));
 const plugins_1 = require("./plugins");
+const index_1 = require("./config/index");
 const body_parser_1 = __importDefault(require("body-parser"));
+(0, index_1.dbConnect)();
 const app = (0, express_1.default)();
 app
     .use((0, morgan_1.default)("dev"))

@@ -5,7 +5,9 @@ import fileUpload from "express-fileupload";
 import { ListenerPlugin, RouterPlugin } from "./plugins";
 import bodyParser from "body-parser";
 const app = express();
-
+app.get("/", (req, res) => {
+  res.json({ msg: "Hello from server" });
+});
 app
   .use(morgan("dev"))
   .use(cors())

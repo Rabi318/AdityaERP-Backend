@@ -36,20 +36,20 @@ const UserSchema = new Schema<USER_TYPE, Model<USER_TYPE>>(
     email: {
       type: String,
       lowercase: true,
-      default: null,
+      // default: null,
     },
   },
   { timestamps: true }
 );
 
-UserSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) {
-    next();
-  }
-  const hashedPassword = await bcrypt.hash(this.password as string, 10);
-  this.password = hashedPassword;
-  next();
-});
+// UserSchema.pre("save", async function (next) {
+//   if (!this.isModified("password")) {
+//     next();
+//   }
+//   const hashedPassword = await bcrypt.hash(this.password as string, 10);
+//   this.password = hashedPassword;
+//   next();
+// });
 
 UserSchema.methods.isPasswordMatched = async function (password: string) {
   return await bcrypt.compare(password, this.password);

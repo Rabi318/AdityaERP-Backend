@@ -4,6 +4,6 @@ import { paddiesController } from "../controllers";
 
 const router = Router();
 
-router.post("/", validate, paddiesController.create);
+router.post("/", validate, authenticate.admin, paddiesController.create);
 router.get("/:id", validate, paddiesController.getByUserId);
 export default router;

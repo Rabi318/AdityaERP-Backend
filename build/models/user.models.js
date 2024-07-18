@@ -46,19 +46,17 @@ const UserSchema = new mongoose_1.Schema({
     email: {
         type: String,
         lowercase: true,
-        default: null,
+        // default: null,
     },
 }, { timestamps: true });
-UserSchema.pre("save", function (next) {
-    return __awaiter(this, void 0, void 0, function* () {
-        if (!this.isModified("password")) {
-            next();
-        }
-        const hashedPassword = yield bcrypt_1.default.hash(this.password, 10);
-        this.password = hashedPassword;
-        next();
-    });
-});
+// UserSchema.pre("save", async function (next) {
+//   if (!this.isModified("password")) {
+//     next();
+//   }
+//   const hashedPassword = await bcrypt.hash(this.password as string, 10);
+//   this.password = hashedPassword;
+//   next();
+// });
 UserSchema.methods.isPasswordMatched = function (password) {
     return __awaiter(this, void 0, void 0, function* () {
         return yield bcrypt_1.default.compare(password, this.password);

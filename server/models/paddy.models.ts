@@ -15,8 +15,8 @@ const paddySchema = new Schema<PADDY_TYPES, Model<PADDY_TYPES>>(
       },
     ],
     paddyType: {
-      type: String,
-      enum: ["1009", "1001", "DERADUN", "BHULAXMI"],
+      type: Schema.Types.ObjectId,
+      ref: "PaddyTypes",
       required: true,
     },
     userId: {

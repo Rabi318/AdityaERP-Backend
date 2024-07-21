@@ -12,7 +12,7 @@ export default interface USER_TYPE {
 
 export default interface PADDY_TYPES {
   userId: object;
-  paddyType: "1001" | "1009" | "DERADUN" | "BHULAXMI";
+  paddyType: object;
   packet: number[];
   nonPlastic: number;
   date: Date;
@@ -38,4 +38,8 @@ export default interface PAYMENT_TYPES {
   paymentType: "ADVANCE" | "PAID";
   paymentMode: "ONLINE" | "CASH";
   userId: object;
+}
+
+export default interface PADDYTYPES_TYPES {
+  name: string;
 }

@@ -40,11 +40,34 @@ export const paddiesController: {
           $match: { userId: new mongoose.Types.ObjectId(userId) },
         },
         {
+          $sort: {
+            createdAt: -1,
+          },
+        },
+        {
           $addFields: {
             totalQnt: { $sum: "$packet" },
             perKg: { $divide: ["$rate", 100] },
             nonPlasticD: { $multiply: ["$nonPlastic", "$nonPlasticRate"] },
           },
+        },
+        {
+          $lookup: {
+            from: "PaddyTypes",
+            foreignField: "_id",
+            localField: "paddyType",
+            as: "paddyType",
+            pipeline: [
+              {
+                $project: {
+                  name: 1,
+                },
+              },
+            ],
+          },
+        },
+        {
+          $unwind: "$paddyType",
         },
         {
           $project: {
